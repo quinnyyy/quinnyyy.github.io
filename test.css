@@ -77,6 +77,12 @@ h3 {
     font-weight: normal;
 }
 
+.regular-text {
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    font-size: 1.3em;
+    margin: 2px 2px 2px 2px;
+}
+
 .exp_text {
     font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
     font-size: .9em;
@@ -177,6 +183,25 @@ h3 {
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+
+.controls {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.option {
+    display: inline-block;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #b3ccff;
+    border-radius: 100%;
+    background: white;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 2em;
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
 }
 
 body {
