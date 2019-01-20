@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+    <title>quinnyyy</title>
+    <link rel='shortcut icon' type='image/x-icon' href='q.ico' />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="test.css">
+    <link href="https://fonts.googleapis.com/css?family=Archivo:500|Open+Sans:300,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cardo:400,700|Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:300" rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="new.html" class="page">Home</a>
+        <a href="resume.html" class="page">Resumé/Projects</a>
+        <a href="fractals.html" class="page">Fractal Trees</a>
+        <!--
+        <a href="classwork.html" class="page">Classwork</a>
+        <a href="projects.html" class="page">Projects</a>
+        <a href="fakeninja.html" class="page">Fake Ninja</a>
+        <a href="dfsbfs.html" class="page">DFS/BFS</a>
+        <a href="contact.html" class="page">Contact</a>
+        -->
+        <a href="https://github.com/quinnyyy" target="_blank">
+        <img src="github.png" alt="github" class="link" style="margin-right:12px;" onmouseover="this.src='github_hover2.png'"
+        onmouseout="this.src='github.png'"/>
+        </a>
+        <a href="https://www.linkedin.com/in/quinn-meurer/" target="_blank"/>
+        <img src="linked_in.png" alt="Linked in" class="link/" onmouseover="this.src='linked_in_hover.png'"
+        onmouseout="this.src='linked_in.png'"/>
+        </a>
+    </div>
+
+    <div style="margin-left: auto; margin-right: auto; display: block; width:50%;">
+<canvas id="maze" style="border:1px solid #000000; margin-left: 20px; margin-top:80px; display:inline-block;"></canvas></canvas>
+<div style="display:inline-block; position: absolute; margin-top:85px;">
+        <div id="DFS" class="option" style="width:80px; border-radius:10%; margin-right: 10px; margin-left:10px; display:block;">DFS</div>
+        <div id="BFS" class="option" style="width:80px; border-radius:10%; margin-right: 10px; margin-left:10px;">BFS</div>
+        <div id="Reset" class="option" style="width:120px; border-radius:10%; margin-right: 10px; margin-left:10px;">Reset</div>
+</div>
+</div>
+<script src="mazes.js"></script>
+
+</body>
+
+
+</html>
