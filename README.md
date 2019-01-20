@@ -1,1 +1,1 @@
-# quinnyyy.github.io
+# quinnyyy.me
