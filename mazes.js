@@ -185,7 +185,7 @@ for (let i=0; i < options.length; i++) {
 
 var size = 25;
 var DFSgrid = makeGrid(size);
-ctx.fillStyle = "#000000";
+ctx.fillStyle = "#808080";
 ctx.fillRect(0,0,width,height);
 var midpt = Math.ceil(size/2) - 1;
 var start = new point(midpt,size - 1);
@@ -213,7 +213,7 @@ reset_button.onclick = function () {
     }
     if (done == true) {
     DFSgrid = makeGrid(size);
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = "#808080";
     ctx.fillRect(0,0,width,height);
     DFSgrid = prims(midpt,size-1,DFSgrid);
     BFSgrid = DFSgrid;
