@@ -83,6 +83,10 @@ function prims(x,y,grid) {
 }
 
 function DFS(s) {
+    if (grid[s.x][s.y] == 3) {
+        return [];
+    }
+    else {
     paintSquare(s.x,s.y,"#33cc33");
     var stack = [];
     var order = [];
@@ -118,9 +122,14 @@ function DFS(s) {
         }
     }
     return order;
+    }
 }
 
 function BFS(s) {
+    if (grid[s.x][s.y] == 3) {
+        return [];
+    }
+    else {
     paintSquare(s.x,s.y,"#33cc33");
     var queue = [];
     var order = [];
@@ -154,9 +163,14 @@ function BFS(s) {
         }
     }
     return order;
+    }
 }
 
 function aStar(s) {
+    if (grid[s.x][s.y] == 3 || grid[s.x][s.y] == 2) {
+        return [];
+    }
+    else {
     paintSquare(s.x,s.y,"#33cc33");
     var x;
     for (var i = 0; i < 25; i++) {
@@ -213,7 +227,7 @@ function aStar(s) {
 
     }
     return order;
-    
+    }   
 }
 
 function makeGrid(size) {
@@ -233,6 +247,18 @@ function paintOrder(order,index) {
         paintSquare(order[index].x,order[index].y,"#33cc33");
         setTimeout(paintOrder,100,order,index+1);
     } else {
+        done = true;
+    }
+}
+
+function paintOrderA(order,index) {
+    if(index != order.length) {
+        paintSquare(order[index].x,order[index].y,"#33cc33");
+        setTimeout(paintOrderA,100,order,index+1);
+    } else {
+        if (order.length != 0) {
+        paintPath(order[order.length - 1]);
+        }
         done = true;
     }
 }
@@ -319,14 +345,14 @@ bfs_button.onclick = function() {
 }
 
 astar_button.onclick = function() {
-    console.log("helloworld");
     if (done == true) {
-    console.log("helloworld2");
     done = false;
     aStarOrder = [];
     aStarOrder = aStar(start);
-    paintOrder(aStarOrder,0);
-    setTimeout(paintPath,(aStarOrder.length+5)* 100,aStarOrder[aStarOrder.length - 1]);
+    paintOrderA(aStarOrder,0);
+    //if (aStarOrder.length > 0) {
+    //setTimeout(paintPath,(aStarOrder.length+5)* 100,aStarOrder[aStarOrder.length - 1]);
+    //}
     //paintPath(aStarOrder[aStarOrder.length - 1]);
     }
 }
