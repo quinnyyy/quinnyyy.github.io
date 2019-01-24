@@ -319,7 +319,9 @@ bfs_button.onclick = function() {
 }
 
 astar_button.onclick = function() {
+    console.log("helloworld");
     if (done == true) {
+    console.log("helloworld2");
     done = false;
     aStarOrder = [];
     aStarOrder = aStar(start);
