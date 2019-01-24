@@ -11,8 +11,21 @@ function paintSquare(x,y,color) {
 }
 
 function point(x_coord, y_coord) {
+
     this.x = x_coord;
     this.y = y_coord;
+}
+
+function apoint(x_coord, y_coord, goal_x, goal_y, last_node) {
+    //g cost is distance from starting node
+    //h cost is distance from end node
+    //f cost = g + h
+    this.x = x_coord;
+    this.y = y_coord;
+    this.h = Math.abs(x_coord - goal_x) + Math.abs(y_coord - goal_y);
+    this.g = Math.abs(x_coord - 12) + Math.abs(y_coord - 24);
+    this.f = Math.abs(x_coord - goal_x) + Math.abs(y_coord - goal_y) +  Math.abs(x_coord - 12) + Math.abs(y_coord - 24);
+    this.parent = last_node;
 }
 
 function prims(x,y,grid) {
@@ -143,6 +156,65 @@ function BFS(s) {
     return order;
 }
 
+function aStar(s) {
+    paintSquare(s.x,s.y,"#33cc33");
+    var x;
+    for (var i = 0; i < 25; i++) {
+        if (grid[i][0] == 0) {
+            x = i;
+        }
+    }
+    var goal = new apoint(x,0);
+
+    var source = new apoint(s.x,s.y,goal.x,goal.y);
+    open = [source];
+    var order = [];
+
+    while (true) { //loop condition subject to change
+        let current = open[0];
+        let index = 0;
+        for (let i = 0; i < open.length; i++) {
+            if (open[i].f < current.f) {
+                current = open[i];
+                index = i;
+            }
+        }
+
+
+        open.splice(index,1);
+        grid[current.x][current.y] = 3; // Marking it as visited
+
+        order.push(current);
+
+        if (current.x == goal.x && current.y - 1== goal.y) {
+            order.push(new apoint(goal.x,goal.y,undefined,undefined,current));
+            break;
+        }
+
+        if (grid[current.x][current.y+1] == 0 && current.y+1 != 0) {
+            let next = new apoint(current.x,current.y+1,goal.x,goal.y,current);
+            open.push(next);
+        }
+
+        if (grid[current.x+1][current.y] == 0 && current.x+1 != 0) {
+            let next = new apoint(current.x+1,current.y,goal.x,goal.y,current);
+            open.push(next);
+        }
+
+        if (grid[current.x-1][current.y] == 0 && current.x-1 != 0) {
+            let next = new apoint(current.x-1,current.y,goal.x,goal.y,current);
+            open.push(next);
+        }
+
+        if (grid[current.x][current.y-1] == 0 && current.y-1 != 0) {
+            let next = new apoint(current.x,current.y-1,goal.x,goal.y,current);
+            open.push(next);
+        }
+
+    }
+    return order;
+    
+}
 
 function makeGrid(size) {
     grid = [];
@@ -162,6 +234,13 @@ function paintOrder(order,index) {
         setTimeout(paintOrder,100,order,index+1);
     } else {
         done = true;
+    }
+}
+
+function paintPath(current_node) {
+    paintSquare(current_node.x,current_node.y,"#d442f4");
+    if (current_node.parent != undefined) {
+        paintPath(current_node.parent);
     }
 }
 
@@ -206,6 +285,7 @@ paintOrder(BFSorder,0);
 var dfs_button = document.getElementById('DFS');
 var bfs_button = document.getElementById('BFS');
 var reset_button = document.getElementById('Reset');
+var astar_button = document.getElementById('Astar');
 
 reset_button.onclick = function () {
     if (done == false) {
@@ -235,5 +315,16 @@ bfs_button.onclick = function() {
     BFSorder = [];
     BFSorder = BFS(start);
     paintOrder(BFSorder,0);
+    }
+}
+
+astar_button.onclick = function() {
+    if (done == true) {
+    done = false;
+    aStarOrder = [];
+    aStarOrder = aStar(start);
+    paintOrder(aStarOrder,0);
+    setTimeout(paintPath,(aStarOrder.length+5)* 100,aStarOrder[aStarOrder.length - 1]);
+    //paintPath(aStarOrder[aStarOrder.length - 1]);
     }
 }
