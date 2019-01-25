@@ -177,6 +177,70 @@ function BFS(s) {
     }
 }
 
+function best_first(s) {
+    if (grid[s.x][s.y] == 3 || grid[s.x][s.y] == 2) {
+        return [];
+    }
+    else {
+    paintSquare(s.x,s.y,"#33cc33");
+    var x;
+    for (var i = 0; i < 25; i++) {
+        if (grid[i][0] == 0) {
+            x = i;
+        }
+    }
+    var goal = new apoint(x,0);
+
+    var source = new apoint(s.x,s.y,goal.x,goal.y);
+    open = [source];
+    var order = [];
+
+    while (true) { //loop condition subject to change
+        let current = open[0];
+        let index = 0;
+        for (let i = 0; i < open.length; i++) {
+            if (open[i].h < current.h) {
+                current = open[i];
+                index = i;
+            }
+        }
+
+
+        open.splice(index,1);
+        grid[current.x][current.y] = 3; // Marking it as visited
+
+        order.push(current);
+
+        if (current.x == goal.x && current.y - 1== goal.y) {
+            order.push(new apoint(goal.x,goal.y,undefined,undefined,current));
+            break;
+        }
+
+        if (grid[current.x][current.y+1] == 0 && current.y+1 != 0) {
+            let next = new apoint(current.x,current.y+1,goal.x,goal.y,current);
+            open.push(next);
+        }
+
+        if (grid[current.x+1][current.y] == 0 && current.x+1 != 0) {
+            let next = new apoint(current.x+1,current.y,goal.x,goal.y,current);
+            open.push(next);
+        }
+
+        if (grid[current.x-1][current.y] == 0 && current.x-1 != 0) {
+            let next = new apoint(current.x-1,current.y,goal.x,goal.y,current);
+            open.push(next);
+        }
+
+        if (grid[current.x][current.y-1] == 0 && current.y-1 != 0) {
+            let next = new apoint(current.x,current.y-1,goal.x,goal.y,current);
+            open.push(next);
+        }
+
+    }
+    return order;
+    }   
+}
+
 function aStar(s) {
     if (grid[s.x][s.y] == 3 || grid[s.x][s.y] == 2) {
         return [];
@@ -311,6 +375,7 @@ DFSgrid = prims(Math.floor(Math.random() * 22) + 1,Math.floor(Math.random() * 22
 start.x = startx;
 //DFSgrid = prims(midpt,size-1,DFSgrid);
 var BFSgrid = DFSgrid;
+var bestGrid = DFSgrid;
 /*
 var DFSorder = DFS(start);
 paintOrder(DFSorder,0);
@@ -325,6 +390,7 @@ var dfs_button = document.getElementById('DFS');
 var bfs_button = document.getElementById('BFS');
 var reset_button = document.getElementById('Reset');
 var astar_button = document.getElementById('Astar');
+var best_button = document.getElementById('best');
 
 reset_button.onclick = function () {
     if (done == false) {
@@ -339,6 +405,7 @@ reset_button.onclick = function () {
     start.x = startx;
     //DFSgrid = prims(midpt,size-1,DFSgrid);
     BFSgrid = DFSgrid;
+    bestGrid = DFSgrid;
     }
 }
 
@@ -370,5 +437,14 @@ astar_button.onclick = function() {
     //setTimeout(paintPath,(aStarOrder.length+5)* 100,aStarOrder[aStarOrder.length - 1]);
     //}
     //paintPath(aStarOrder[aStarOrder.length - 1]);
+    }
+}
+
+best_button.onclick = function() {
+    if (done == true) {
+        done = false;
+        bestOrder = [];
+        bestOrder = best_first(start);
+        paintOrderA(bestOrder,0);
     }
 }
