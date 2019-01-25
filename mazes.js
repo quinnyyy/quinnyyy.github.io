@@ -29,8 +29,6 @@ function apoint(x_coord, y_coord, goal_x, goal_y, last_node) {
 }
 
 function prims(x,y,grid) {
-    console.log(x);
-    console.log(y);
     grid[x][y] = 0;
     paintSquare(x,y,"#ffffff");
     var walls = [];
@@ -94,7 +92,7 @@ function prims(x,y,grid) {
 }
 
 function DFS(s) {
-    if (grid[s.x][s.y] == 3) {
+    if (DFSgrid[s.x][s.y] == 3) {
         return [];
     }
     else {
@@ -137,7 +135,7 @@ function DFS(s) {
 }
 
 function BFS(s) {
-    if (grid[s.x][s.y] == 3) {
+    if (BFSgrid[s.x][s.y] == 3) {
         return [];
     }
     else {
@@ -365,13 +363,21 @@ for (let i=0; i < options.length; i++) {
 
 var size = 25;
 var DFSgrid = makeGrid(size);
+var oldGrid = [];
 ctx.fillStyle = "#808080";
 ctx.fillRect(0,0,width,height);
 var midpt = Math.ceil(size/2) - 1;
 var start = new point(midpt,size - 1);
 var startx;
 
-DFSgrid = prims(Math.floor(Math.random() * 22) + 1,Math.floor(Math.random() * 22) + 1,DFSgrid);
+DFSgrid = prims(Math.floor(Math.random() * 20) + 2,Math.floor(Math.random() * 20) + 2,DFSgrid);
+for (let i=0; i<size;i++) {
+    let test = [];
+    for (let j=0; j<size; j++) {
+        test.push(DFSgrid[i][j]);
+    }
+    oldGrid.push(test);
+}
 start.x = startx;
 //DFSgrid = prims(midpt,size-1,DFSgrid);
 var BFSgrid = DFSgrid;
@@ -386,11 +392,14 @@ var BFSorder = BFS(start);
 paintOrder(BFSorder,0);
 */
 
+
+
 var dfs_button = document.getElementById('DFS');
 var bfs_button = document.getElementById('BFS');
 var reset_button = document.getElementById('Reset');
 var astar_button = document.getElementById('Astar');
 var best_button = document.getElementById('best');
+var clear_button = document.getElementById('clear');
 
 reset_button.onclick = function () {
     if (done == false) {
@@ -400,12 +409,41 @@ reset_button.onclick = function () {
     DFSgrid = makeGrid(size);
     ctx.fillStyle = "#808080";
     ctx.fillRect(0,0,width,height);
-    Math.floor(Math.random() * 10)
     DFSgrid = prims(Math.floor(Math.random() * 22) + 1,Math.floor(Math.random() * 22) + 1,DFSgrid);
+    copy(DFSgrid,oldGrid);
     start.x = startx;
     //DFSgrid = prims(midpt,size-1,DFSgrid);
     BFSgrid = DFSgrid;
     bestGrid = DFSgrid;
+    }
+}
+
+function copy(x,y) {
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j<size; j++) {
+            y[i][j] = x[i][j];
+        }
+    }
+}
+
+clear_button.onclick = function() {
+    if (done == false) {
+        alert("Wait for the search to finish");
+    }
+    if (done == true) {
+        copy(oldGrid,DFSgrid);
+        copy(oldGrid,BFSgrid);
+        copy(oldGrid,bestGrid);
+        copy(oldGrid,grid);
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0,0,width,height);
+        for (let i=0; i<size;i++) {
+            for (let j=0; j<size;j++) {
+                if(DFSgrid[i][j] == 1) {
+                    paintSquare(i,j,"#808080");
+                }
+            }
+        }
     }
 }
 
