@@ -48,18 +48,18 @@
 <h3 style="color: #668cff;">Prim's Algorithm for Random Maze generation</h3>
     <div class="prj_text">
         <ul>
-            <li style="margin-right: 10%;">Start with grid full of walls and a starting point (bottom middle)</li>
-            <li style="margin-right: 10%;">Maintain a list of walls to look at. Start by adding the walls surrounding the starting point</li>
-            <li style="margin-right: 10%;">Choose a random wall in the wall list. If the wall does not connect passages make it a passage. Add the surrounding walls to the wall list</li>
+            <li style="margin-right: 10%;">Start with grid full of walls and choose a starting point at random</li>
+            <li style="margin-right: 10%;">Maintain a collection of walls under consideration. Begin by adding the walls surrounding the starting point</li>
+            <li style="margin-right: 10%;">Choose a wall from the collection at random. If it does not violate maze properties carve it out as a pathway.</li>
             <li style="margin-right: 10%;">Remove the chosen wall from the wall list</li>
             <li style="margin-right: 10%;">Repeat the following two steps until no walls remain in the wall list</li>
-            <li style="margin-right: 10%;">Add an exit from a random point from the top row</li>
+            <li style="margin-right: 10%;">Add an exit to the top row and an entrance to the bottom row at random</li>
         </ul>
     </div>
 <h3 style="color: #668cff;">Depth First Search</h3>
     <div class="prj_text">
         <ul>
-            <li style="margin-right: 10%;">Choose a source (bottom middle)</li>
+            <li style="margin-right: 10%;">Choose a source (starting point)</li>
             <li style="margin-right: 10%;">Create a stack and add the source to the stack</li>
             <li style="margin-right: 10%;">While the stack is not empty pop the top off the stack and if it is not visited mark it as visited and add its neighbors to the stack.</li>
         </ul>
@@ -68,7 +68,7 @@
     <h3 style="color: #668cff;">Breadth First Search</h3>
     <div class="prj_text">
         <ul>
-            <li style="margin-right: 10%;">Choose a source (bottom middle)</li>
+            <li style="margin-right: 10%;">Choose a source (starting point)</li>
             <li style="margin-right: 10%;">Create a queue and add the source to the stack</li>
             <li style="margin-right: 10%;">While the queue is not empty dequeue the first element of the queue and if it is not visited mark it as visited and add its neighbors to the queue.</li>
         </ul>
@@ -77,10 +77,10 @@
     <h3 style="color: #668cff;">A* Pathfinding Algorithm</h3>
     <div class="prj_text">
         <ul>
-            <li style="margin-right: 10%;">Choose a source (bottom middle)</li>
+            <li style="margin-right: 10%;">Choose a source (starting point)</li>
             <li style="margin-right: 10%;">Create a collection of nodes under consideration beginning with the neighbors of the source</li>
             <li style="margin-right: 10%;">Find the f cost (distance from goal + distance from beginning) for each node under consideration </li>
-            <li style="margin-right: 10%;">Add the node with the lowest f cost to the path</li>
+            <li style="margin-right: 10%;">Add the node with the lowest f cost to the path and add its neighbors to be considered</li>
             <li style="margin-right: 10%;">Repeat previous two steps</li>
         </ul>
     </div>
