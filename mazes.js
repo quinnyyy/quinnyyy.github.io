@@ -308,7 +308,7 @@ var start = new point(midpt,size - 1);
 var startx;
 
 DFSgrid = prims(Math.floor(Math.random() * 22) + 1,Math.floor(Math.random() * 22) + 1,DFSgrid);
-
+start.x = startx;
 //DFSgrid = prims(midpt,size-1,DFSgrid);
 var BFSgrid = DFSgrid;
 /*
