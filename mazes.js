@@ -29,6 +29,8 @@ function apoint(x_coord, y_coord, goal_x, goal_y, last_node) {
 }
 
 function prims(x,y,grid) {
+    console.log(x);
+    console.log(y);
     grid[x][y] = 0;
     paintSquare(x,y,"#ffffff");
     var walls = [];
@@ -71,14 +73,23 @@ function prims(x,y,grid) {
         walls.splice(index,1);
     }
     var top = [];
+    var bottom = [];
     for (let i = 0; i < size; i++) {
         if(grid[i][1] == 0) {
             top.push(i);
         }
+        if(grid[i][23] == 0) {
+            bottom.push(i);
+        }
     }
     let topIndex = Math.floor(Math.random()*top.length);
+    let bottomIndex = Math.floor(Math.random()*bottom.length);
     grid[top[topIndex]][0] = 0;
+    grid[bottom[bottomIndex]][24] = 0;
     paintSquare(top[topIndex],0,"#ffffff");
+    paintSquare(bottom[bottomIndex],24,"#ffffff");
+    startx = bottom[bottomIndex];
+
     return grid;
 }
 
@@ -294,9 +305,11 @@ ctx.fillStyle = "#808080";
 ctx.fillRect(0,0,width,height);
 var midpt = Math.ceil(size/2) - 1;
 var start = new point(midpt,size - 1);
+var startx;
 
+DFSgrid = prims(Math.floor(Math.random() * 22) + 1,Math.floor(Math.random() * 22) + 1,DFSgrid);
 
-DFSgrid = prims(midpt,size-1,DFSgrid);
+//DFSgrid = prims(midpt,size-1,DFSgrid);
 var BFSgrid = DFSgrid;
 /*
 var DFSorder = DFS(start);
@@ -321,7 +334,10 @@ reset_button.onclick = function () {
     DFSgrid = makeGrid(size);
     ctx.fillStyle = "#808080";
     ctx.fillRect(0,0,width,height);
-    DFSgrid = prims(midpt,size-1,DFSgrid);
+    Math.floor(Math.random() * 10)
+    DFSgrid = prims(Math.floor(Math.random() * 22) + 1,Math.floor(Math.random() * 22) + 1,DFSgrid);
+    start.x = startx;
+    //DFSgrid = prims(midpt,size-1,DFSgrid);
     BFSgrid = DFSgrid;
     }
 }
