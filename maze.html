@@ -36,13 +36,13 @@
     </div>
 
     <canvas id="maze" style="border:1px solid #000000; margin-left: auto; margin-right:auto; margin-top:70px;display:block;"></canvas>
-        <div style="text-align: center; margin-top: 10px;">
-            <div id="DFS" class="option" style="width:80px; border-radius:10%; margin-right: 10px; margin-left:10px; display:inline;">DFS</div>
-            <div id="BFS" class="option" style="width:80px; border-radius:10%; margin-right: 10px; margin-left:10px; display:inline;">BFS</div>
-            <div id="best" class="option" style="width:80px; border-radius:10%; margin-right: 10px; margin-left:10px; display:inline;">Best-First</div>
-            <div id="Astar" class="option" style="width:80px; border-radius:10%; margin-right: 10px; margin-left:10px; display:inline;">A*</div>
-            <div id="clear" class="option" style="width:80px; border-radius:10%; margin-right: 10px; margin-left:10px; display:inline;">Clear</div>
-            <div id="Reset" class="option" style="width:120px; border-radius:10%; margin-right: 10px; margin-left:10px; display: inline;">Reset</div>
+        <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+            <div id="DFS" class="option" style="width:80px; border-radius:10%; margin-right: 5px; margin-left:5px; display:inline-block;">DFS</div>
+            <div id="BFS" class="option" style="width:80px; border-radius:10%; margin-right: 5px; margin-left:5px; display:inline-block;">BFS</div>
+            <div id="best" class="option" style="width:210px; border-radius:10%; margin-right: 5px; margin-left:5px; display:inline-block;">Best-First</div>
+            <div id="Astar" class="option" style="width:60px; border-radius:10%; margin-right: 5px; margin-left:5px; display:inline-block;">A*</div>
+            <div id="clear" class="option" style="width:110px; border-radius:10%; margin-right: 5px; margin-left:5px; display:inline-block;">Clear</div>
+            <div id="Reset" class="option" style="width:120px; border-radius:10%; margin-right: 5px; margin-left:5px; display: inline-block;">Reset</div>
         </div>
 
 <script src="mazes.js"></script>
@@ -86,7 +86,7 @@
         </ul>
     </div>
 
-    <h3 style="color: #668cff;">A* Pathfinding Algorithm</h3>
+    <h3 style="color: #668cff;">Best First Pathfinding Algorithm</h3>
     <div class="prj_text">
         <ul>
             <li style="margin-right: 10%;">Same as A* except it only takes into consideration the distance from the goal when making decisions</li>

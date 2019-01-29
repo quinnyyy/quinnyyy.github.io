@@ -38,6 +38,7 @@ function prims(x,y,grid) {
         let index = Math.floor(Math.random()*walls.length);
         let pt = walls[index];
         let count = 0;
+        
         if (grid[pt.x+1][pt.y] == 0){
             count++;
         }
@@ -50,6 +51,7 @@ function prims(x,y,grid) {
         if (grid[pt.x][pt.y-1] == 0){
             count++;
         }
+
 
         if (count > 1 || pt.x == 24 || pt.x == 0 || pt.y == 0 || pt.y == 24);
         else {
